@@ -68,3 +68,12 @@ fabric.properties
 
 
 # End of https://www.gitignore.io/api/intellij
+.idea/compiler.xml
+.idea/description.html
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/modules/
+.idea/project-template.xml
+Rozprochy.iml
+
