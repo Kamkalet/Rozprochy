@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Rozprochy.iml" filepath="$PROJECT_DIR$/Rozprochy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sharedHashMap.iml" filepath="$PROJECT_DIR$/.idea/modules/sharedHashMap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sharedHashMap_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sharedHashMap_main.iml" group="sharedHashMap" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sharedHashMap_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sharedHashMap_test.iml" group="sharedHashMap" />
+    </modules>
+  </component>
+</project>
