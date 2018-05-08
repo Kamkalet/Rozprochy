@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "sr.grpc.gen";
+option java_outer_classname = "CalculatorProto";
+option objc_class_prefix = "HLW";
+
+package currency;
+
+
+service CurrencyRateSubscription{
+    rpc Subscribe (SubscribeRequest) returns (ExchangeRateReply) {
+    }
+}
+
+message SubscribeRequest {
+    repeated CurrencyType type = 1;
+}
+
+message Currency {
+    CurrencyType type = 1;
+    double value = 2;
+}
+
+enum CurrencyType {
+    EUR = 0;
+    GBP = 1;
+    USD = 2;
+    CHF = 3;
+}
+
+
+message ExchangeRateReply {
+    repeated Currency currency = 1;
+}
