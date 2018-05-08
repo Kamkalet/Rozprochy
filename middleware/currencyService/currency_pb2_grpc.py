@@ -14,7 +14,7 @@ class CurrencyRateSubscriptionStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.Subscribe = channel.unary_unary(
+    self.Subscribe = channel.unary_stream(
         '/currency.CurrencyRateSubscription/Subscribe',
         request_serializer=currency__pb2.SubscribeRequest.SerializeToString,
         response_deserializer=currency__pb2.ExchangeRateReply.FromString,
@@ -35,7 +35,7 @@ class CurrencyRateSubscriptionServicer(object):
 
 def add_CurrencyRateSubscriptionServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'Subscribe': grpc.unary_unary_rpc_method_handler(
+      'Subscribe': grpc.unary_stream_rpc_method_handler(
           servicer.Subscribe,
           request_deserializer=currency__pb2.SubscribeRequest.FromString,
           response_serializer=currency__pb2.ExchangeRateReply.SerializeToString,

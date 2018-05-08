@@ -22,14 +22,14 @@ def get_rates(stub, currency_list):
         request.type.append(currency_type.value)
 
     response = stub.Subscribe(request)
-
-    print(response)
+    for rate in response:
+        print(rate)
 
 
 def run():
     channel = grpc.insecure_channel('localhost:50051')
     stub = currency_pb2_grpc.CurrencyRateSubscriptionStub(channel)
-    get_rates(stub, [CurrencyType.EUR, CurrencyType.CHF])
+    get_rates(stub, [CurrencyType.EUR])
     # repeated_response = stub.GetExchangeRates(currency_pb2.ExchangeRateRequest(value=))
     # print(repeated_response)
 

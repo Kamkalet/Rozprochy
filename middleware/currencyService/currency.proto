@@ -9,17 +9,12 @@ package currency;
 
 
 service CurrencyRateSubscription{
-    rpc Subscribe (SubscribeRequest) returns (ExchangeRateReply) {
+    rpc Subscribe (SubscribeRequest) returns (stream ExchangeRateReply) {
     }
 }
 
 message SubscribeRequest {
     repeated CurrencyType type = 1;
-}
-
-message Currency {
-    CurrencyType type = 1;
-    double value = 2;
 }
 
 enum CurrencyType {
@@ -31,5 +26,6 @@ enum CurrencyType {
 
 
 message ExchangeRateReply {
-    repeated Currency currency = 1;
+    CurrencyType type = 1;
+    double value = 2;
 }

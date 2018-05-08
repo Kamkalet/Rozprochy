@@ -1,12 +1,19 @@
 from threading import Thread
 import time
 import random
+from enum import Enum
+
+
+class CurrencyType(Enum):
+    EUR = 0
+    GBP = 1
+    USD = 2
+    CHF = 3
 
 
 class ExchangeRateProvider:
-    def __init__(self, server):
+    def __init__(self):
         # initial values ( dummy )
-        self.service = server
         self.rates = {'EUR': 4.2, 'GBP': 3.8, 'USD': 3.5, 'CHF': 3.5}
         self.thread = Thread(target=self.quake_market)
         self.thread.start()
@@ -20,7 +27,6 @@ class ExchangeRateProvider:
                 time.sleep(5)
                 for key, value in self.rates.items():
                     delta = self.rates[key] * random.uniform(-0.01, 0.01)
-                    print(delta)
                     self.rates[key] = self.rates[key] + delta
                 print_rates_update(self.rates)
         except KeyboardInterrupt:

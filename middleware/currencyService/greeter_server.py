@@ -33,20 +33,24 @@ TIME_TO_SLEEP = 5
 
 
 class CurrencyService(CurrencyRateSubscriptionServicer):
-    def __init__(self, server):
+    def __init__(self, provider, server):
+        self.provider = provider
         self.server = server
 
     def Subscribe(self, request, context):
         print(request)
-
-        return ExchangeRateReply()
+        while True:
+            rates = self.provider.get_exchange_rate()
+            for currency in request.type:
+                reply = ExchangeRateReply(type=CurrencyType.Name(currency), value=rates[CurrencyType.Name(currency)])
+                yield reply
+                time.sleep(1)
 
 
 def serve():
     print("Starting currency service server...")
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
-    service = CurrencyService(server)
-    ExchangeRateProvider(service)
+    service = CurrencyService(ExchangeRateProvider(), server)
     add_CurrencyRateSubscriptionServicer_to_server(service, server)
     server.add_insecure_port('[::]:50051')
     server.start()
